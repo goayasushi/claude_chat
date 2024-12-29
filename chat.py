@@ -1,6 +1,7 @@
 import anthropic
 import os
 from dotenv import load_dotenv
+from memory_profiler import profile
 
 # load .env
 load_dotenv()
@@ -13,6 +14,8 @@ client = anthropic.Anthropic(
 )
 
 
+# verify memory consumption
+@profile
 def call_claude_api(question):
     # message create: https://docs.anthropic.com/en/docs/initial-setup
     message = client.messages.create(
